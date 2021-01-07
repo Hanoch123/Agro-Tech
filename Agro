@@ -1,0 +1,952 @@
+#include<iostream>
+#include<conio.h>
+#include<stdlib.h>
+#include<iomanip>
+#include<ctime>
+#include<windows.h>
+using namespace std;
+/*  The kharif cropping season is from July –October during the south-west monsoon
+    and the Rabi cropping season is from October-March (winter).
+    The crops grown between March and June are summer crops.
+    ****** KAHRIF(JULY TO OCTOBER) ******
+    RICE - Natural - Rs 100/Kg (MARKET PRICE : Rs 5000/Quintal)
+    MAIZE - Natural - Rs 40/Kg (MARKET PRICE : Rs 3500/Quintal)
+    COTTON - Rs 24/Kg (MARKET PRICE : Rs 13000/Quintal)
+    ****** RABI(NOVEMBER TO APRIL) ******
+    WHEAT - Natural - Rs 26/Kg (MARKET PRICE : 2000/Quintal)
+    BLACK MUSTARD - Natural - Rs 95/Kg (MARKET PRICE : 4500/Quintal)
+    CUMIN - Packed - Rs 170/Kg (MARKET PRICE : 17000/Quintal)
+    *****PESTICIDES - 950/Litre *****
+    *****WEEDICITES - 200/Litre *****
+*/
+static int count = 0;
+string setcolor(unsigned short color){
+    HANDLE hcon = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hcon, color);
+    return "";
+}
+class user
+{
+private:
+    string name,y,id,unq,prof;
+    char *pass,addr[100],feed[50];
+    int usno,prod;
+    float rrs,mrs,cors,crs,wrs,bmrs,rq,mq,coq,cq,wq,bmq,rtotal,ktotal,rquan,kquan,pequan,wequan,pers,wers;
+public:
+    friend class manager;
+    user()
+    {
+        pass = new char[10];
+    }
+    void display(user a)                    ///Main display.
+    {
+        user u[100];
+        int n,k=0;
+        string s;
+        char ch;
+        do
+        {
+            system("CLS");
+            setcolor(6);
+            cout<<"\t---------------------------"<<endl;
+            setcolor(96);
+            cout<<"\t\tAGRO-TECH"<<endl;
+            setcolor(6);
+            cout<<"\t---------------------------"<<endl<<endl;
+            setcolor(3);
+            cout<<"\t(1) Sign Up."<<endl;
+            setcolor(10);
+            cout<<"\t(2) Login."<<endl;
+            setcolor(4);
+            cout<<"\t(3) Exit."<<endl;
+            setcolor(7);
+            cout<<endl<<"Enter your choice : ";
+            cin>>n;
+            switch(n)
+            {
+            case 1:
+            	cout<<k;
+                sign_up(u,k);
+                cout<<k;
+                break;
+            case 2:
+            	system("CLS");
+	        	int pos;
+	        	bool b;
+    	    	char p[10];
+        		setcolor(2);
+        		cout<<"\t---------------------------\n"<<endl;
+        		setcolor(32);
+	        	cout<<"\t*****LOGIN PAGE*****\n\n";
+	        	setcolor(2);
+	        	cout<<"\t---------------------------"<<endl;
+    	    	setcolor(7);
+        		cout<<endl<<endl<<"\tEnter ID : ";
+        		cin>>s;
+        		for(int k=0;k<=count;k++)
+        		{
+            		if(s == u[k].unq)
+            		{
+            			b = true;
+       		        	pos = k;
+        	    	}
+    	    	}
+				if(!b)
+    	    	{
+	            	setcolor(4);
+            		cout<<endl<<"\tYou do not have an account."<<endl;
+            		cout<<"\n\tPlease Create an account before you Login."<<endl<<endl;
+            		setcolor(7);
+            		system("PAUSE");
+        		}
+        		else
+        		{
+        			login_page(u,pos);
+        		}
+                break;
+            case 3:
+                setcolor(4);
+                cout<<endl<<endl<<"*****\tExiting\t*****"<<endl<<endl;
+                setcolor(7);
+                exit(0);
+                break;
+            default:
+                cout<<"Invalid choice!";
+                cout<<endl<<"Enter your choice : ";
+                cin>>n;
+                break;
+            }
+        }while(ch == 'y' && ch != 'n');
+    }
+    user sign_up(user a[],int &h)
+    {
+    	char t;
+        system("CLS");
+        setcolor(1);
+        cout<<"\t\t-----------------------"<<endl<<endl;
+        setcolor(48);
+        cout<<"\t\t*****Enter Details*****"<<endl<<endl;
+        setcolor(1);
+        cout<<"\t\t-----------------------"<<endl;
+        setcolor(3);
+        cout<<"\n\t*(Please do not use space while enter your details!)\n\n";
+        cout<<"\tNAME : ";
+        setcolor(7);
+        cin>>a[h].name;
+        setcolor(3);
+        cout<<"\tPROFESSION (Are you a farmer (y/n) : ";
+        setcolor(7);
+        cin>>t;
+        if(t == 'y' || t == 'Y')
+        {
+        	a[h].prof = "Farmer";
+		}
+		else
+		{
+			setcolor(3);
+			cout<<"\n\t\tPLEASE SPECIFY YOUR PROFESSION : ";
+			setcolor(7);
+			cin>>a[h].prof;
+			cout<<"\n";
+		}
+        setcolor(3);
+        cout<<"\tADDRESS : ";
+        setcolor(7);
+        cin>>a[h].addr;
+        setcolor(3);
+        cout<<"\tBirth Year : ";
+        setcolor(7);
+        cin>>a[h].y;
+        char temp[10];
+        setcolor(3);
+        cout<<"\tCREATE PASSWORD (10 chars only) : ";
+        setcolor(7);
+        for (int i = 0; i < 10;i++) {
+        a[h].pass[i] = _getch();
+        if (a[h].pass[i] == 13) {
+            break;
+        }
+        else {
+            _putch('*');
+        }
+        }
+        cout<<endl<<a[h].pass<<endl;
+        setcolor(3);
+        do{
+        cout<<"\n\tRE-ENTER PASSWORD : ";
+        setcolor(7);
+        for (int i = 0; i < 10;i++) {
+        temp[i] = _getch();
+        if (temp[i] == 13) {
+            break;
+        }
+        else {
+            _putch('*');
+        }
+        }
+        cout<<"\na = "<<a[h].pass<<"\tt = "<<temp<<endl;
+        if(strcmp(a[h].pass,temp)!=0)
+        {
+            setcolor(4);
+            cout<<"\nPassword doesn't match!"<<endl;
+        }
+        }while(strcmp(a[h].pass,temp)!=0);
+        a[h].usno = count;count++;
+        a[h].unq = a[h].name + a[h].y;
+        setcolor(10);
+        cout<<endl<<endl<<"\t"<<a[h].name<<" Your Account created Successfully!";
+        setcolor(4);
+        cout<<endl<<endl<<"\tYour unique ID is ' ";
+        setcolor(6);
+        cout<<a[h].unq;
+        setcolor(4);
+        cout<<" '"<<endl<<endl;
+        setcolor(6);
+        cout<<"\tPlease Exit and Re-login with your new unique Id and password"<<endl<<endl;
+        setcolor(7);
+        system("PAUSE");
+        h = h++;
+    }
+    void login_page(user a[],int pos)                ///Diverting to login and password.
+    {
+        char p[10];
+        setcolor(7);
+        cout<<"\tEnter Password : ";
+        for(int i=0;i<10;i++)
+        {
+            p[i] = _getch();
+            _putch('*');
+            if(p[i] == 13)break;
+        }
+        if(strcmp(a[pos].pass,p)==0)
+        {
+            login(a,pos);
+        }
+        else
+        {
+            setcolor(4);
+            cout<<endl<<"\tEither User ID or Password is wrong!"<<endl<<endl;
+            cout<<"\n\tPlease Enter Again!"<<endl<<endl;
+            setcolor(7);
+            login_page(a,pos);
+        }
+    }
+    void login(user a[],int pos)                        ///Login page.
+    {
+        system("CLS");
+        int k;
+        time_t now = time(0);
+        tm *dt = localtime(&now);
+        setcolor(6);
+        cout<<"\t\t------------------------------\n"<<endl;
+        setcolor(96);
+        cout<<"\t\t*****WELCOME TO HOME PAGE*****\n"<<endl;
+        setcolor(6);
+        cout<<"\t\t------------------------------"<<endl;
+        setcolor(6);
+        cout<<endl<<"Hello "<<a[pos].name<<"!"<<setw(50)<<dt->tm_mday<<"/"<<1 + dt->tm_mon<<"/"<<1900+ dt->tm_year<<endl;
+        setcolor(3);
+		cout<<endl<<"\t1. Buy products";
+        setcolor(5);
+		cout<<endl<<"\t2. Profile";
+        setcolor(12);
+		cout<<endl<<"\t3. Settings";
+        setcolor(4);
+		cout<<endl<<"\t4. Logout";
+		setcolor(7);
+        cout<<endl<<"\nEnter your choice : ";
+        cin>>k;
+        switch(k)
+        {
+        case 1:
+            Buy(a,pos);
+            break;
+        case 2:
+            Profile(a,pos);
+            break;
+        case 3:
+            Settings(a,pos);
+            break;
+        case 4:
+            setcolor(4);
+            cout<<"\n\nSuccessfully Logged Out"<<endl<<endl;
+            setcolor(7);
+            system("PAUSE");
+            break;
+        }
+    }
+    void Buy(user a[],int pos)
+    {
+        system("CLS");
+        char resp;
+        time_t now = time(0);
+        tm *dt = localtime(&now);
+        char cp;
+        int o;
+        float q,rs;
+            if(1 + dt->tm_mon==11||1 + dt->tm_mon==12||1 + dt->tm_mon==1||1 + dt->tm_mon==2||1 + dt->tm_mon==3||1 + dt->tm_mon==4)
+            {
+                setcolor(3);
+        		cout<<"\t\t---------------------------------\n"<<endl;
+                setcolor(48);
+                cout<<"\t\t*****SINCE IT IS RABI SEASON*****\n"<<endl;
+                setcolor(3);
+        		cout<<"\t\t---------------------------------"<<endl;
+				setcolor(3);
+                cout<<"\nThe products we Offer are : "<<endl;
+                setcolor(7);
+                cout<<"\n\t(1) WHEAT - Natural - Rs 26/Kg"<<endl;
+                cout<<"\t(2) BLACK MUSTARD - Natural - Rs 95/Kg"<<endl;
+                cout<<"\t(3) CUMIN - Packed - Rs 170/Kg "<<endl;
+                cout<<"\t(4) PESTICIDES - 950/Litre"<<endl;
+                cout<<"\t(5) WEEDICITES - 200/Litre"<<endl;
+                cout<<"\t(6) EXIT"<<endl;
+                cout<<"\nEnter your choice : "<<endl;
+                cin>>a[pos].prod;
+                switch(a[pos].prod)
+                {
+                case 1:
+                    cout<<"Please specify the quantity (in grams): "<<endl;
+                    cin>>q;
+                    rs=(q/1000)*26;
+                    cout<<"PRICE : "<<rs<<endl;
+                    cout<<endl<<"Do you want to buy Wheat seeds (y/n) : ";
+                    cin>>resp;
+                    if(resp == 'y')
+                    {
+                        o = pay(a,pos);
+                    }
+                    else{
+                        cout<<"*****Redirecting*****"<<endl;
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    if(o == 1)
+                    {
+                    	setcolor(10);
+                        cout<<endl<<"\t\tPAYMENT OF Rs."<<rs<<"/- IS SUCCESSFUL\n"<<endl;
+                        cout<<
+                        setcolor(7);
+						a[pos].wq += q;
+                        a[pos].rquan+= q;
+                        a[pos].wrs += rs;
+                        a[pos].rtotal += rs;
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    else if(o == -1)
+                    {
+                    	setcolor(4);
+                        cout<<endl<<"\t\tPAYMENT OF Rs."<<rs<<"/- IS UNSUCCESSFUL\n"<<endl;
+                        setcolor(7);
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    break;
+                case 2:
+                    cout<<"Please specify the quantity (in grams): "<<endl;
+                    cin>>q;
+                    rs=(q/1000)*95;
+                    cout<<"PRICE : "<<rs<<endl;
+                    cout<<endl<<"Do you want to buy Black Mustard seeds (y/n) : ";
+                    cin>>resp;
+                    if(resp == 'y')
+                    {
+                        o = pay(a,pos);
+                    }
+                    else{
+                        cout<<"*****Redirecting*****"<<endl;
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    if(o == 1)
+                    {
+                    	setcolor(10);
+                        cout<<endl<<"\t\tPAYMENT OF Rs."<<rs<<"/- IS SUCCESSFUL\n"<<endl;
+                        setcolor(7);
+						a[pos].bmq += q;
+                        a[pos].rquan+= q;
+                        a[pos].bmrs += rs;
+                        a[pos].rtotal += rs;
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    else if(o == -1)
+                    {
+                    	setcolor(4);
+                        cout<<endl<<"\t\tPAYMENT OF Rs."<<rs<<"/- IS UNSUCCESSFUL\n"<<endl;
+                        setcolor(7);
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    break;
+                case 3:
+                    cout<<"Please specify the quantity (in grams): "<<endl;
+                    cin>>q;
+                    rs=(q/1000)*170;
+                    cout<<"PRICE : "<<rs<<endl;
+                    cout<<endl<<"Do you want to buy Cumin seeds (y/n) : ";
+                    cin>>resp;
+                    if(resp == 'y')
+                    {
+                        o = pay(a,pos);
+                    }
+                    else{
+                        cout<<"*****Redirecting*****"<<endl;
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    if(o == 1)
+                    {
+                    	setcolor(10);
+                        cout<<endl<<"\t\tPAYMENT OF Rs."<<rs<<"/- IS SUCCESSFUL\n"<<endl;
+                        setcolor(7);
+						a[pos].cq += q;
+                        a[pos].rquan+= q;
+                        a[pos].crs += rs;
+                        a[pos].rtotal += rs;
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    else if(o == -1)
+                    {
+                    	setcolor(4);
+                        cout<<endl<<"\t\tPAYMENT OF Rs."<<rs<<"/- IS UNSUCCESSFUL\n"<<endl;
+                        setcolor(7);
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    break;
+                case 4:
+                    cout<<"Please specify the quantity (in Litres): "<<endl;
+                    cin>>q;
+                    rs=q*950;
+                    cout<<"PRICE : "<<rs<<endl;
+                    cout<<endl<<"Do you want to buy Pesticides (y/n) : ";
+                    cin>>resp;
+                    if(resp == 'y'||resp == 'Y')
+                    {
+                        o = pay(a,pos);
+                    }
+                    else{
+                        cout<<"*****Redirecting*****"<<endl;
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    if(o == 1)
+                    {
+                    	setcolor(10);
+                        cout<<endl<<"\t\tPAYMENT OF Rs."<<rs<<"/- IS SUCCESSFUL\n"<<endl;
+                        setcolor(7);
+						a[pos].pequan += q;
+                        a[pos].pers += rs;
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    else if(o == -1)
+                    {
+                    	setcolor(4);
+                    	cout<<endl<<"\t\tPAYMENT OF Rs."<<rs<<"/- IS UNSUCCESSFUL\n"<<endl;
+                        setcolor(7);
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    break;
+                case 5:
+                    cout<<"Please specify the quantity (in Litres): "<<endl;
+                    cin>>q;
+                    rs=q*200;
+                    cout<<"PRICE : "<<rs<<endl;
+                    cout<<endl<<"Do you want to buy Weedicites (y/n) : ";
+                    cin>>resp;
+                    if(resp == 'y'||resp == 'Y')
+                    {
+                        o = pay(a,pos);
+                    }
+                    else{
+                        cout<<"*****Redirecting*****"<<endl;
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    if(o == 1)
+                    {
+                    	setcolor(10);
+                        cout<<endl<<"\t\tPAYMENT OF Rs."<<rs<<"/- IS SUCCESSFUL\n"<<endl;
+                        setcolor(7);
+						a[pos].wequan += q;
+                        a[pos].wers += rs;
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    else if(o == -1)
+                    {
+                    	setcolor(4);
+                        cout<<endl<<"\t\tPAYMENT OF Rs."<<rs<<"/- IS UNSUCCESSFUL\n"<<endl;
+                        setcolor(7);
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    break;
+                case 6:
+                	setcolor(4);
+                	cout<<"\n\n*****Exiting*****\n\n";
+                	setcolor(7);
+                	system("PAUSE");
+                    login(a,pos);
+                    break;
+                default:
+                	setcolor(4);
+                    cout<<"\n\nPlease enter a valid choice."<<endl;
+                    break;
+                }
+            }
+            else if(1 + dt->tm_mon==6||1 + dt->tm_mon==7||1 + dt->tm_mon==8||1 + dt->tm_mon==9||1 + dt->tm_mon==10)
+            {
+            	setcolor(3);
+            	cout<<"\t\t-----------------------------------\n\n";                
+                setcolor(48);
+                cout<<"\t\t*****SINCE IT IS KHARIF SEASON*****\n"<<endl;
+                setcolor(3);
+                cout<<"\t\t-----------------------------------\n";
+				setcolor(1);
+				cout<<"\nThe products we Offer are : "<<endl;
+                setcolor(7);
+				cout<<"\n\t(1) RICE - Natural - Rs 100/Kg "<<endl;
+                cout<<"\t(2) MAIZE - Natural - Rs 40/Kg "<<endl;
+                cout<<"\t(3) COTTON - Rs 24/Kg "<<endl;
+                cout<<"\t(4) PESTICIDES - 950/Litre"<<endl;
+                cout<<"\t(5) WEEDICITES - 200/Litre"<<endl;
+                cout<<"\t(6) EXIT"<<endl;
+                cout<<"Enter your choice : "<<endl;
+                cin>>a[pos].prod;
+                switch(a[pos].prod)
+                {
+                case 1:
+                    cout<<"Please specify the quantity (in grams): "<<endl;
+                    cin>>q;
+                    rs=(q/1000)*100;
+                    cout<<"PRICE : "<<rs<<endl;
+                    cout<<endl<<"Do you want to buy Rice seeds (y/n) : ";
+                    cin>>resp;
+                    if(resp == 'y')
+                    {
+                        o = pay(a,pos);
+                    }
+                    else{
+                        cout<<"*****Redirecting*****"<<endl;
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    if(o == 1)
+                    {
+                    	setcolor(10);
+                        cout<<endl<<"\t\tPAYMENT OF Rs."<<rs<<"/- IS SUCCESSFUL\n"<<endl;
+                        setcolor(7);
+						a[pos].rq += q;
+                        a[pos].kquan+= q;
+                        a[pos].rrs += rs;
+                        a[pos].ktotal += rs;
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    else if(o == -1)
+                    {
+                    	setcolor(4);
+                        cout<<endl<<"\t\tPAYMENT OF Rs."<<rs<<"/- IS UNSUCCESSFUL\n"<<endl;
+                        setcolor(7);
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    break;
+                case 2:
+                    cout<<"Please specify the quantity (in grams): "<<endl;
+                    cin>>q;
+                    rs=(q/1000)*40;
+                    cout<<"PRICE : "<<rs<<endl;
+                    cout<<endl<<"Do you want to buy Maize seeds (y/n) : ";
+                    cin>>resp;
+                    if(resp == 'y')
+                    {
+                        o = pay(a,pos);
+                    }
+                    else{
+                        cout<<"*****Redirecting*****"<<endl;
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    if(o == 1)
+                    {
+                    	setcolor(10);
+                        cout<<endl<<"\t\tPAYMENT OF Rs."<<rs<<"/- IS SUCCESSFUL\n"<<endl;
+                        setcolor(7);
+						a[pos].mq += q;
+                        a[pos].kquan+= q;
+                        a[pos].mrs += rs;
+                        a[pos].ktotal += rs;
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    else if(o == -1)
+                    {
+                    	setcolor(4);
+                        cout<<endl<<"\t\tPAYMENT OF Rs."<<rs<<"/- IS UNSUCCESSFUL\n"<<endl;
+                        setcolor(7);
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    break;
+                case 3:
+                    cout<<"Please specify the quantity (in grams): "<<endl;
+                    cin>>q;
+                    rs=(q/1000)*24;
+                    cout<<"PRICE : "<<rs<<endl;
+                    cout<<endl<<"Do you want to buy Cotton seeds (y/n) : ";
+                    cin>>resp;
+                    if(resp == 'y')
+                    {
+                        o = pay(a,pos);
+                    }
+                    else{
+                        cout<<"*****Redirecting*****"<<endl;
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    if(o == 1)
+                    {
+                    	setcolor(10);
+                        cout<<endl<<"\t\tPAYMENT OF Rs."<<rs<<"/- IS SUCCESSFUL\n"<<endl;
+                        setcolor(7);
+						a[pos].coq += q;
+                        a[pos].kquan+= q;
+                        a[pos].cors += rs;
+                        a[pos].ktotal += rs;
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    else if(o == -1)
+                    {
+                    	setcolor(4);
+                        cout<<endl<<"\t\tPAYMENT OF Rs."<<rs<<"/- IS UNSUCCESSFUL\n"<<endl;
+                        setcolor(7);
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    break;
+                case 4:
+                    cout<<"Please specify the quantity (in Litres): "<<endl;
+                    cin>>q;
+                    rs=q*950;
+                    cout<<"PRICE : "<<rs<<endl;
+                    cout<<endl<<"Do you want to buy Pesticides (y/n) : ";
+                    cin>>resp;
+                    if(resp == 'y'||resp == 'Y')
+                    {
+                        o = pay(a,pos);
+                    }
+                    else{
+                        cout<<"*****Redirecting*****"<<endl;
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    if(o == 1)
+                    {
+                    	setcolor(10);
+                        cout<<endl<<"\t\tPAYMENT OF Rs."<<rs<<"/- IS SUCCESSFUL\n"<<endl;
+                        setcolor(7);
+						a[pos].pequan += q;
+                        a[pos].pers += rs;
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    else if(o == -1)
+                    {
+                    	setcolor(4);
+                        cout<<endl<<"\t\tPAYMENT OF Rs."<<rs<<"/- IS UNSUCCESSFUL\n"<<endl;
+                        setcolor(7);
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    break;
+                case 5:
+                    cout<<"Please specify the quantity (in Litres): "<<endl;
+                    cin>>q;
+                    rs=q*200;
+                    cout<<"PRICE : "<<rs<<endl;
+                    cout<<endl<<"Do you want to buy Weedicites (y/n) : ";
+                    cin>>resp;
+                    if(resp == 'y'||resp == 'Y')
+                    {
+                        o = pay(a,pos);
+                    }
+                    else{
+                        cout<<"*****Redirecting*****"<<endl;
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    if(o == 1)
+                    {
+                    	setcolor(10);
+                        cout<<endl<<"\t\tPAYMENT OF Rs."<<rs<<"/- IS SUCCESSFUL\n"<<endl;
+                        setcolor(7);
+						a[pos].wequan += q;
+                        a[pos].wers += rs;
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    else if(o == -1)
+                    {
+                    	setcolor(4);
+                        cout<<endl<<"\t\tPAYMENT OF Rs."<<rs<<"/- IS UNSUCCESSFUL\n"<<endl;
+                        setcolor(7);
+                        system("PAUSE");
+                        Buy(a,pos);
+                    }
+                    break;
+                case 6:
+                	setcolor(4);
+                	cout<<"\n\n*****Exiting*****\n\n";
+                	setcolor(7);
+                	system("PAUSE");
+                    login(a,pos);
+                    break;
+                default:
+                	setcolor(4);
+                    cout<<"\n\nPlease enter a valid choice."<<endl;
+                    break;
+                }
+            }
+    }
+    int pay(user a[],int pos)
+    {
+        system("CLS");
+        int ch;
+        setcolor(10);
+        cout<<"\t\t-----------------\n\n";
+        setcolor(32);
+        cout<<"\nPayment Options :";
+        setcolor(10);
+        cout<<"\t\t-----------------\n";
+		setcolor(10);
+		cout<<"\n\n\t(1) PAY."<<endl;
+        setcolor(6);
+		cout<<"\t(2) CHANGE PRODUCT."<<endl;
+        setcolor(4);
+		cout<<"\t(3) EXIT WITHOUT PAYING."<<endl;
+		setcolor(7);
+        cout<<"\nEnter your choice :";
+        cin>>ch;
+        switch (ch)
+        {
+        case 1:
+            cout<<endl<<"*****Redirecting to paying page*****\n"<<endl;
+            return 1;
+            break;
+        case 2:
+            setcolor(6);
+            cout<<"\n\tChanging Product!\n"<<endl;
+            setcolor(7);
+			return -1;
+            break;
+        case 3:
+            return -1;
+            break;
+        default:
+            setcolor(4);
+            cout<<endl<<"\tWrong Choice"<<endl;
+            setcolor(7);
+            return -1;
+            break;
+        }
+        Buy(a,pos);
+    }
+    void Profile(user a[],int pos)
+    {
+        system("CLS");
+        setcolor(5);
+        cout<<"\t\t-----------------\n\n";
+        setcolor(80);
+        cout<<"\t\t*****PROFILE*****\n\n";
+        setcolor(5);
+        cout<<"\t\t-----------------\n";
+		cout<<endl;
+		setcolor(7);
+        cout<<"\tName : "<<a[pos].name<<endl;
+        cout<<"\tProfession : "<<a[pos].prof<<endl;
+        cout<<"\tAddress : "<<a[pos].addr<<endl;
+        cout<<endl<<"\t\t\t*****Products taken*****"<<endl;
+        cout<<endl<<setw(46)<<"In Kharif Season : "<<endl;
+        cout<<"\n\tSeeds"<<setw(30)<<"Quantity(grams)"<<setw(25)<<"Price(Rupees)"<<endl;
+        cout<<"\n\tRice seeds"<<setw(18)<<a[pos].rq<<setw(27)<<a[pos].rrs<<endl;
+        cout<<"\tMaize seeds"<<setw(17)<<a[pos].mq<<setw(27)<<a[pos].mrs<<endl;
+        cout<<"\tCotton seeds"<<setw(16)<<a[pos].coq<<setw(27)<<a[pos].cors<<endl;
+        cout<<endl<<setw(45)<<"In Rabi Season : "<<endl;
+        cout<<"\n\tSeeds"<<setw(30)<<"Quantity(grams)"<<setw(25)<<"Price(Rupees)"<<endl;
+        cout<<"\n\tWheat seeds"<<setw(17)<<a[pos].wq<<setw(27)<<a[pos].wrs<<endl;
+        cout<<"\tBlack Mustard seeds"<<setw(9)<<a[pos].bmq<<setw(27)<<a[pos].bmrs<<endl;
+        cout<<"\tCumin seeds"<<setw(17)<<a[pos].cq<<setw(27)<<a[pos].crs<<endl;
+        cout<<"\tTOTAL"<<setw(23)<<a[pos].rquan+a[pos].kquan<<setw(27)<<a[pos].rtotal+a[pos].ktotal<<endl;
+        cout<<setw(50)<<"Pesticides and weedicites :"<<endl;
+        cout<<"\n\tPesticides"<<setw(18)<<a[pos].pequan<<setw(27)<<a[pos].pers<<endl;
+        cout<<"\tWeedicites"<<setw(18)<<a[pos].wequan<<setw(27)<<a[pos].wers<<endl<<endl<<endl;
+        system("PAUSE");
+        login(a,pos);
+    }
+    void Settings(user a[],int pos)
+    {
+    	system("CLS");
+        char p[10];
+        char np1[10];
+        char np2[10];
+        char h[10];
+        int n;
+        setcolor(12);
+        cout<<"\t\t------------------\n"<<endl;
+        setcolor(192);
+		cout<<"\t\t*****Settings*****\n"<<endl;
+        setcolor(12);
+        cout<<"\t\t------------------"<<endl;
+        setcolor(7);
+		cout<<"\t(1)Account\n"<<"\t(2)Change password\n";
+        cout<<"\t(3)Change Address\n"<<"\t(4)Feedback\n"<<"\t(5)Exit\n";
+        cout<<"\nEnter your choice : ";
+        cin>>n;
+        switch(n)
+        {
+        case 1:
+            Profile(a,pos);
+            break;
+        case 2:
+            char r;
+            cout<<"\tDo you want to change your password (y/n) : ";
+            cin>>r;
+            if(r=='n'||r=='N')
+            {
+                Settings(a,pos);
+            }
+            else if(r=='y'||r=='Y')
+            {
+                cout<<"\n\tENTER PREVIOUS PASSWORD : ";
+                for(int i=0;i<10;i++)
+                {
+                    p[i] = _getch();
+                    if(p[i] == 13){break;}
+                    else{
+                    	_putch('*');
+					}
+                }
+                if(strcmp(a[pos].pass,p)==0)
+                {
+                    cout<<"\n\n\n\tENTER NEW PASSWORD (No space and 10 chars only): ";
+                    for(int i=0;i<10;i++)
+                    {
+                        np1[i] = _getch();
+                        if(np1[i] == 13){break;}
+                        else{_putch('*');}
+                    }
+                    cout<<"\n\tRE-ENTER NEW PASSWORD : ";
+                    for(int i=0;i<10;i++)
+                    {
+                        np2[i] = _getch();
+                        _putch('*');
+                        if(np2[i] == 13){break;}
+                        else{
+                        	_putch('*');
+						}
+                    }
+                    cout<<endl<<np1<<"\t"<<np2<<endl;
+                    if(strcmp(np1,np2)==0)
+                    {
+                        for(int i=0;i<10;i++)
+						{
+                        a[pos].pass[i]= np1[i];
+                        }
+                        setcolor(10);
+                        cout<<"\n\tPassword successfully changed!\n"<<endl;
+                        setcolor(7);
+						system("PAUSE");
+                    }
+                    else{
+                        setcolor(4);
+                        cout<<"\n\tPassword Don't Match!\n"<<endl;
+                        setcolor(7);
+                        system("PAUSE");
+                    }
+                }
+                else
+                {
+                    setcolor(4);
+                    cout<<"\n\tIncorrect password!\n";
+                    setcolor(7);
+                    system("PAUSE");
+                }
+            }
+            break;
+        case 3:
+            char k;
+            cout<<"\tDo you want to change your Address (y/n) : ";
+            cin>>k;
+            if(k=='n'||k=='N')
+            {
+                Settings(a,pos);
+            }
+            else if(k=='y'||k=='Y')
+            {
+                cout<<"\n\tENTER PREVIOUS PASSWORD : ";
+                for(int i=0;i<10;i++)
+                {
+                    h[i] = _getch();
+                    if(h[i] == 13){break;}
+                    else{
+                        _putch('*');
+                    }
+                }
+                if(strcmp(a[pos].pass,p)==0)
+                {
+                    cout<<"\n\tENTER NEW ADDRESS (No space): ";
+                    cin>>a[pos].addr;
+                }
+                else
+                {
+                    setcolor(4);
+                    cout<<"\n\tIncorrect password!\n";
+                    setcolor(7);
+                    system("PAUSE");
+                }
+            }
+            break;
+        case 4:
+        	system("CLS");
+        	setcolor(96);
+        	cout<<"*****FEEDBACK*****"<<endl;
+        	setcolor(7);
+        	cout<<"Feel free to give us your honest feedback : "<<endl<<endl;
+        	cin>>a[pos].feed;
+			cout<<"\n\nYour response is successfully recorded!\n"<<endl;
+			system("PAUSE");			
+            break;
+        case 5:
+        	setcolor(4);
+        	cout<<"\n\nExiting\n\n";
+        	setcolor(7);
+			system("PAUSE");
+            break;
+        default:
+            setcolor(4);
+            cout<<"\n\tInvalid option\n";
+            setcolor(7);
+            system("PAUSE");
+            break;
+        }
+		login(a,pos);
+    }
+};
+class manager
+{
+	
+};
+int main()
+{
+    user u;
+    u.display(u);
+    return 0;
+}
