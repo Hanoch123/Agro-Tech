@@ -1,0 +1,72 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href = "https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel = "stylesheet" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <section class="sub-header">
+    <nav>
+        <a href="Main.html"><img src="Images/Fsf%20Logo.png"></a>
+        <div class="nav-links" id="navLinks">
+            <i class="fa fa-times" onclick="hideMenu()"></i>
+            <ul>
+                <li><a href="Main.html">HOME</a></li>
+                <li><a href="Register.html" onclick="redirect()">SOIL & CROP INFO</a></li>
+                <li><a href="Register.html" onclick="redirect()">CONTACT</a></li>
+                <li><a href="index.html">ABOUT</a></li>
+                <li><a href="Register.html">REGISTER</a></li>
+                <script type="text/javascript">
+                    function redirect(){
+                        alert("Login to access information");
+                    }
+                </script>
+            </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+    </nav>
+    <h1>About Us</h1>
+    </section>
+    
+<!-----abot us content ----->
+    
+<section class="about-us">
+    <div class="row">
+        <div class="about-col">
+            <h1>Farmer's Friend</h1>
+            <p>This is a web based project which is useful for farmers and agricultural students. This is an open discussion portal providing solutions to  farmers and agricultural students. Any general public can also use this system for knowing the information about various crops, and the usage of fertilizers.It provides all the users to have userID and password.Users can also post their queries.The main objective of the project is to provide information to the farmers and agricultural students.It provides better solutions for farmers in providing the information regarding soils,fertilizers.It also helps the agricultural students to get  practical information regarding various crops.This portal also provides the recommended dose of NPK for various types of crops.</p>
+            <a href="Register.html" class="hero-btn red-btn">SIGN-UP TO KNOW MORE</a>
+        </div>
+        <div class="about-col">
+            <img src="Images/about.jpg">
+        </div>
+    </div>
+</section>
+        
+<!------Footer------->
+    <hr>
+    <section class="footer">
+        <div class="icons">
+            <a href="https://www.facebook.com/CBIThyderabad"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/CBIThyd"><i class="fa fa-twitter"></i></a>
+            <a href="http://www.instagram.com/cbithyderabad"><i class="fa fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/cbit-technologies/"><i class="fa fa-linkedin"></i></a>
+        </div>
+        <p>Made by Pranav And Hanoch</p>
+        <p>&copy Farmer's Friend</p>
+    </section>
+    
+<!------Javascript for toggle Menu------->
+    <script>
+        var navLinks = document.getElementById("navLinks");
+        function showMenu(){
+            navLinks.style.right = "0";
+        }
+        function hideMenu(){
+            navLinks.style.right = "-200px";
+        }
+    </script>
+</body>
+</html>

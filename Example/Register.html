@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="Login%20&%20Signup.css" />
+    <title>Sign in & Sign up Form</title>
+    <script type="text/javascript">
+      function preventBack() {
+          window.history.forward(); 
+      }
+        
+      setTimeout("preventBack()", 0);
+        
+      window.onunload = function () { null };
+  </script>
+  </head>
+  <body>
+    <p id="demo"></p>
+    <div class="container">
+      <div class="forms-container">
+        <div class="signin-signup">
+          <form action="login.php" method="post" class="sign-in-form">
+            <h2 class="title">Sign in</h2>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" name="username" id="usher" placeholder="Username" required>
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <input name="login" id="login" type="submit" value="Login" class="btn solid" />
+            <p class="social-text">Follow us on social platforms</p>
+            <div class="social-media">
+              <a href="https://www.facebook.com/CBIThyderabad" class="social-icon">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="https://twitter.com/CBIThyd" class="social-icon">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="http://www.instagram.com/cbithyderabad" class="social-icon">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="https://www.linkedin.com/company/cbit-technologies/" class="social-icon">
+                <i class="fab fa-linkedin"></i>
+              </a>
+            </div>
+          </form>
+          <form action="signup.php" method="post" class="sign-up-form">
+            <h2 class="title">Sign up</h2>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" name="username" placeholder="Username" required>
+            </div>
+            <div class="input-field">
+              <i class="fas fa-envelope"></i>
+              <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <input name="signup" id="signup" type="submit" class="btn" value="Sign up" />
+            <p class="social-text">Follow us on social platforms</p>
+            <div class="social-media">
+              <a href="https://www.facebook.com/CBIThyderabad" class="social-icon">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="https://twitter.com/CBIThyd" class="social-icon">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="http://www.instagram.com/cbithyderabad" class="social-icon">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="https://www.linkedin.com/company/cbit-technologies/" class="social-icon">
+                <i class="fab fa-linkedin"></i>
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="panels-container">
+        <div class="panel left-panel">
+          <div class="content">
+            <h3>New here ?</h3>
+            <p>
+              If you are new here click on the sign up button to create your account now!
+            </p>
+            <button class="btn transparent" id="sign-up-btn">
+              Sign up
+            </button>
+          </div>
+          <img src="Images/log.svg" class="image" alt="" />
+        </div>
+        <div class="panel right-panel">
+          <div class="content">
+            <h3>One of us ?</h3>
+            <p>
+              Yay! If you already have an account, click on the sign in button to login.
+            </p>
+            <button class="btn transparent" id="sign-in-btn">
+              Sign in
+            </button>
+          </div>
+          <img src="Images/register.svg" class="image" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

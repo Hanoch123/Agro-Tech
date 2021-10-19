@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href = "https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel = "stylesheet" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript">
+        window.history.forward();
+        function noBack() {
+            window.history.forward();
+        }
+    </script>
+</head>
+<body>
+    <section class="sub-header">
+    <nav>
+        <a href="Main.html"><img src="Images/Fsf%20Logo.png"></a>
+        <div class="nav-links" id="navLinks">
+            <i class="fa fa-times" onclick="hideMenu()"></i>
+            <ul>
+                <li><a href="Afterlogged.html">HOME</a></li>
+                <li><a href="Soil.html">SOIL & CROP INFO</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+                <li><a href="loginindex.html">ABOUT</a></li>
+                <li>
+                    <style>
+                        .dropbtn {
+                          background-color: transparent;
+                          color: white;
+                          font-size: 13px;
+                          border: none;
+                          cursor: pointer;
+                        }
+                        
+                        .dropbtn:hover, .dropbtn:focus {
+                          background-color: transparent;
+                        }
+                        
+                        .dropdown {
+                          position: relative;
+                          display: inline-block;
+                        }
+                        
+                        .dropdown-content {
+                          display: none;
+                          position: absolute;
+                          background-color: transparent;
+                          min-width: 73px;
+                          overflow: auto;
+                          z-index: 1;
+                        }
+                        
+                        .dropdown-content a {
+                          color: white;
+                          text-align: justify;
+                          padding: 10px;
+                          text-decoration: none;
+                          display: block;
+                        }
+                        .dropdown-content a::after{
+                            content: '';
+                            width: 0%;
+                            height: 2px;
+                            background: #0099ff;
+                            display: block;
+                            margin: auto;
+                            transition: 0.5s;
+                        }
+                        .dropdown-content a:hover::after{
+                            width: 100%;
+                        }
+                        
+                        .dropdown a:hover {background-color: transparent;}
+                        
+                        .show {display: block;}
+                        </style>
+                    <div class="dropdown">
+                        <button onclick="myFunction()" class="dropbtn"><i class="far fa-user"></i>User</button>
+                        <div id="myDropdown" class="dropdown-content">
+                          <a href="Logout.php">LOGOUT</a>
+                        </div>
+                      </div>
+                      <script>
+                        function myFunction() {
+                          document.getElementById("myDropdown").classList.toggle("show");
+                        }
+                        window.onclick = function(event) {
+                          if (!event.target.matches('.dropbtn')) {
+                            var dropdowns = document.getElementsByClassName("dropdown-content");
+                            var i;
+                            for (i = 0; i < dropdowns.length; i++) {
+                              var openDropdown = dropdowns[i];
+                              if (openDropdown.classList.contains('show')) {
+                                openDropdown.classList.remove('show');
+                              }
+                            }
+                          }
+                        }
+                        </script>
+                </li>
+            </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+    </nav>
+    <h1>Contact Us</h1>
+    </section>
+    
+<!-----contact us ----->
+    
+    <section class="location">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3807.4126499574345!2d78.3194368!3d17.391973500000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb94eba8ad7c87%3A0xb78f51ed556f7cc5!2sChaitanya%20Bharathi%20Institute%20of%20Technology!5e0!3m2!1sen!2sin!4v1619504980462!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </section>
+    <section class="contact-us">
+        <div class="row">
+            <div class="contact-col">
+                <div>
+                <i class="fa fa-home"></i>
+                <span>
+                    <h5>Chaitanya Bharathi Institute of Technology</h5>
+                    <p>Gandipet, Telangana, India</p>
+                    <p></p>
+                </span>
+            </div>
+                <div>
+                <i class="fa fa-phone"></i>
+                <span>
+                    <h5>+91-040-24193276</h5>
+                    <p>Monday to Saturday, 10AM to 6PM</p>
+                    <p></p>
+                </span>
+            </div>
+            <div>
+                <i class="fa fa-envelope-o"></i>
+                <span>
+                    <h5>farmersfriend@gmail.com</h5>
+                    <p>Email us your query</p>
+                    <p></p>
+                </span>
+            </div>
+            </div>
+            <div class="contact-col">
+                <form action="Reg.php" method="post">
+                    <input type="text" name="name" placeholder="Enter your Name" required>
+                    <input type="email" name="email" placeholder="Enter email Address" required>
+                    <input type="text" name="subject" placeholder="Enter your subject" required>
+                    <textarea rows="8" name="message" placeholder="Message" required></textarea>
+                    <button name="send" id="send" type="submit" class="hero-btn red-btn">Send Message</button>
+                </form>
+            
+            </div>
+                
+        </div>
+    </section>
+    
+    
+<!------Footer------->
+    <hr>
+    <section class="footer">
+        <h4>About Us</h4>
+        <p>This is a web based project which is useful for farmers and agricultural students. This is an open discussion portal providing solutions to farmers and agricultural students. Any general public can also use this system for knowing the information about various crops, and the usage of fertilizers. It provides better solutions for farmers in providing the information regarding soils,crops and fertilizers. It also helps the agricultural students to get practical information regarding various crops. This portal also provides the recommended dose of NPK for various types of crops.</p>
+        <div class="icons">
+            <a href="https://www.facebook.com/CBIThyderabad"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/CBIThyd"><i class="fa fa-twitter"></i></a>
+            <a href="http://www.instagram.com/cbithyderabad"><i class="fa fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/cbit-technologies/"><i class="fa fa-linkedin"></i></a>
+        </div>
+        <p>Made by Pranav And Hanoch</p>
+        <p>&copy Farmer's Friend</p>
+    </section>
+    
+<!------Javascript for toggle Menu------->
+    <script>
+        var navLinks = document.getElementById("navLinks");
+        function showMenu(){
+            navLinks.style.right = "0";
+        }
+        function hideMenu(){
+            navLinks.style.right = "-200px";
+        }
+    </script>
+</body>
+</html>

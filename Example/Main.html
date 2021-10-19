@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer's Friend!</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href = "https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel = "stylesheet" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <section class="header">
+    <nav>
+        <a href="Main.html"><img src="Images/Fsf%20Logo.png"></a>
+        <div class="nav-links" id="navLinks">
+            <i class="fa fa-times" onclick="hideMenu()"></i>
+            <ul>
+                <li><a href="Main.html">HOME</a></li>
+                <li><a href="Register.html" onclick="redirect()">SOIL & CROP INFO</a></li>
+                <li><a href="Register.html" onclick="redirect()">CONTACT</a></li>
+                <li><a href="index.html">ABOUT</a></li>
+                <li id="demo"><a href="Register.html">REGISTER</a></li>
+                <script type="text/javascript">
+                    function redirect(){
+                        alert("Login to access information");
+                    }
+                </script>
+            </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+    </nav>
+    <div class="text-box">
+        <h1>Farmer's Friend</h1>
+        <p>We are happy you chose us. You can ask us any question related to <br>soil, crop or fertilizer.
+        </p>
+        <a href="Register.html" class="hero-btn">Register to know More</a>
+    </div>
+    </section>
+    
+<!------Facilities------->
+
+    <section class="facilities">
+        <h1>Our Facilities</h1>
+        <p></p>
+        
+        <div class="row">
+            <div class="facilities-col">
+                <a href="https://en.wikipedia.org/wiki/Telangana"><img src="Images/soil.jpg"></a>
+                <h3>Soil</h3>
+                <p>Soils help sustain life by fulfilling our needs for food, feed and fiber plus a number of critical ecological services. They provide the essential macronutrients needed by plants to grow, nitrogen (N), phosphorus (P), potassium (K), sulphur (S), calcium (Ca) and magnesium (Mg), along with several micronutrients, such as zinc (Zn), iron (Fe) and many more.</p>
+            </div>
+            <div class="facilities-col">
+                <a href="https://en.wikipedia.org/wiki/Telangana_Department_of_Agriculture"><img src="Images/crop.jpeg"></a>
+                <h3>Crops</h3>
+                <p>Crops are typically divided into four categories: Fruit crops, Vegetable crops, Plantation crops, and Spice crops. Ever since hunter-gatherer societies shifted to become agricultural societies during the Neolithic period about 10,000 years ago, crops have become the primary method of feeding humans in every corner of the world. To this day, they drive not only food distribution and consumption, but also fuel, manufacturing, and virtually every other industry.</p>
+            </div>
+            <div class="facilities-col">
+                <a href="https://en.wikipedia.org/wiki/Fertilizer_Corporation_of_India"><img src="Images/fertilizer.jpg"></a>
+                <h3>Fertilizers</h3>
+                <p>Fertilizers play an important role for soil health: they supplement the natural supply of soil nutrients, build up soil fertility in order to satisfy the demand of crops with a high yield potential and compensate for the nutrients taken by harvested products or lost by unavoidable leakages to the environment, in order to maintain good soil conditions for cropping.</p>
+            </div>
+        </div>
+    </section>
+
+<!------Campus------->
+
+    <section class="campus">
+        <h1>Our Helping Hands</h1>
+        <p>These are our helping hands for making this possible.</p>
+        <div class="row">
+            <div class="campus-col">
+                <img src="Images/cbit.jpg">
+                <div class="layer">
+                    <a href="https://www.cbit.ac.in/"><h3>CBIT</h3></a>
+                </div>
+            </div>
+            <div class="campus-col">
+                <img src="Images/meeseva.jpg">
+                    <div class="layer">
+                        <a href="https://ts.meeseva.telangana.gov.in/meeseva/home.htm"><h3>MEE SEVA</h3></a>
+                </div>
+            </div>
+            <div class="campus-col">
+                <img src="Images/farmer.jpg">
+                <div class="layer">
+                    <a href="https://en.wikipedia.org/wiki/Agriculture_in_India"><h3>FARMERS</h3></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<!------Testimonials------->
+    <section class="testimonials">
+        <h1>What Our Users Say</h1>
+        <p>Here are some of our users reviews</p>
+        
+        <div class="row">
+            <div class="testimonial-col">
+                <img src="Images/Randi.jpeg">
+                <div>
+                    <p>No need to search in multiple webistes, farmer's friend saved a lot of time for me.</p>
+                    <h3>Senani</h3>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                    </div>
+                </div>
+            <div class="testimonial-col">
+                <img src="Images/Mamdabad.jpeg">
+                <div>
+                    <p>This is a must try website for all farmers and agricultural students.</p>
+                    <h3>Mamdabad</h3>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<!------Call To Action------->
+    <section class="cta">
+        <h1>Ask Us Any Question Related To <br>Soil, Crops or Fertilizers</h1>
+        <a href="Register.html" onclick="redirect()" class="hero-btn">CONTACT US</a>
+    </section>
+    
+<!------Footer------->
+    <hr>
+    <section class="footer">
+        <h4>About Us</h4>
+        <p>This is a web based project which is useful for farmers and agricultural students. This is an open discussion portal providing solutions to farmers and agricultural students. Any general public can also use this system for knowing the information about various crops, and the usage of fertilizers. It provides better solutions for farmers in providing the information regarding soils,crops and fertilizers. It also helps the agricultural students to get practical information regarding various crops. This portal also provides the recommended dose of NPK for various types of crops.</p>
+        <div class="icons">
+            <a href="https://www.facebook.com/CBIThyderabad"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/CBIThyd"><i class="fa fa-twitter"></i></a>
+            <a href="http://www.instagram.com/cbithyderabad"><i class="fa fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/cbit-technologies/"><i class="fa fa-linkedin"></i></a>
+        </div>
+        <p>Made by Hanoch and Pranav</p>
+        <p>&copy Farmer's Friend</p>
+    </section>
+    
+<!------Javascript for toggle Menu------->
+    <script>
+        var navLinks = document.getElementById("navLinks");
+        function showMenu(){
+            navLinks.style.right = "0";
+        }
+        function hideMenu(){
+            navLinks.style.right = "-200px";
+        }
+    </script>
+</body>
+</html>
